@@ -7,16 +7,17 @@ const Songs = ({album}) => {
 
     const GenItem = (e, key) => {
         // console.log(name.name)
-        const [counter, setCounter] = useState(0);
+        const [decision, setDecision] = useState(true);
         const incrementCounter = () => setCounter(prevCount=>++prevCount) 
-        const decrementCounter = () => setCounter(prevCount=>--prevCount) 
-
+        const decrementCounter = () => setCounter(prevCount=>--prevCount)
+        
+        const changeDecision = () => {
+            setDecision(prevDecision => !prevDecision)
+        }
         return (
             <>
-            <li>{e.name}</li>
-            <button onClick={incrementCounter}>+</button>
-            {counter}
-            <button onClick={decrementCounter}>-</button>
+            <li style={{background: decision? 'none': 'green'}}>{e.name}</li>
+            <button onClick={changeDecision}>{decision? 'LIKE': 'UNLIKE'}</button>
             </>
         )
     }
